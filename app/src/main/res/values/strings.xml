@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">changemarker</string>
+    <string name="_6">6</string>
+    <string name="_5">5</string>
+    <string name="_4">4</string>
+    <string name="_3">3</string>
+    <string name="_1">1</string>
+    <string name="_2">2</string>
+    <string name="_7">7</string>
+    <string name="_8">8</string>
+    <string name="_9">9</string>
+    <string name="clear">clear</string>
+    <string name="price">Price:</string>
+    <string name="_20dollar">$20:</string>
+    <string name="_25cent">25¢:</string>
+    <string name="_10dollar">$10:</string>
+    <string name="_5cent">5¢:</string>
+    <string name="_1dollar">$1:</string>
+    <string name="_10cent">10¢:</string>
+    <string name="_5dollar">$5:</string>
+    <string name="_1cent">1¢:</string>
+    <string name="_0">0</string>
+
+</resources>
