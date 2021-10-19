@@ -60,13 +60,13 @@ class MainActivity : AppCompatActivity() {
             // 25 cent
             numTwentyFive_cent.setText((cent / 0.25).toInt().toString())
             cent = (cent - (cent / 0.25).toInt() * 0.25).toFloat()
-
+            // 10 cent
             numTen_cent.setText((cent / 0.1).toInt().toString())
             cent = (cent - (cent / 0.1).toInt() * 0.1).toFloat()
-
+            // 5 cent
             numFive_cent.setText((cent / 0.05).toInt().toString())
             cent = (cent - (cent / 0.05).toInt() * 0.05).toFloat()
-
+            // 1 cent
             numOne_cent.setText(((cent / 0.01) + 0.001).toInt().toString())
         }
 
@@ -76,6 +76,7 @@ class MainActivity : AppCompatActivity() {
             converter()
         }
 
+        // button action
         zeroBtn.setOnClickListener(){
             change(0)
         }
