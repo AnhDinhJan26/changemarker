@@ -41,8 +41,6 @@ class MainActivity : AppCompatActivity() {
         fun converter(){
             var dollar = (total / 100).toInt()
             var cent: Float = total / 100 - dollar
-            numTwenty_dollar.setText(dollar.toString())
-            numTen_dollar.setText(cent.toString())
             // dollar
             // 20 dollar
             numTwenty_dollar.setText((dollar / 20).toInt().toString())
@@ -112,6 +110,9 @@ class MainActivity : AppCompatActivity() {
             numPrice.setText((total / 100).toString())
             converter()
         }
-
     }
+
+//    override fun saveState(): Bundle {
+//        return bundleOf()
+//    }
 }
