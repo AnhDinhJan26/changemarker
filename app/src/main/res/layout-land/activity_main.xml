@@ -234,7 +234,7 @@
 
     <TextView
         android:id="@+id/num_one_cent"
-        android:layout_width="50dp"
+        android:layout_width="70dp"
         android:layout_height="30dp"
         android:text="@string/_0"
         android:textAlignment="textStart"
@@ -248,7 +248,7 @@
 
     <TextView
         android:id="@+id/num_five_cent"
-        android:layout_width="50dp"
+        android:layout_width="70dp"
         android:layout_height="30dp"
         android:text="@string/_0"
         android:textAlignment="textStart"
@@ -262,7 +262,7 @@
 
     <TextView
         android:id="@+id/num_ten_cent"
-        android:layout_width="50dp"
+        android:layout_width="70dp"
         android:layout_height="30dp"
         android:text="@string/_0"
         android:textAlignment="textStart"
@@ -276,7 +276,7 @@
 
     <TextView
         android:id="@+id/num_twentyFive_cent"
-        android:layout_width="50dp"
+        android:layout_width="70dp"
         android:layout_height="30dp"
         android:text="@string/_0"
         android:textAlignment="textStart"
@@ -290,7 +290,7 @@
 
     <TextView
         android:id="@+id/num_ten_dollar"
-        android:layout_width="50dp"
+        android:layout_width="70dp"
         android:layout_height="30dp"
         android:text="@string/_0"
         android:textAlignment="textStart"
@@ -361,7 +361,7 @@
 
     <TextView
         android:id="@+id/num_one_dollar"
-        android:layout_width="50dp"
+        android:layout_width="70dp"
         android:layout_height="30dp"
         android:text="@string/_0"
         android:textAlignment="textStart"
@@ -375,7 +375,7 @@
 
     <TextView
         android:id="@+id/num_five_dollar"
-        android:layout_width="50dp"
+        android:layout_width="70dp"
         android:layout_height="30dp"
         android:text="@string/_0"
         android:textAlignment="textStart"
@@ -389,7 +389,7 @@
 
     <TextView
         android:id="@+id/num_twenty_dollar"
-        android:layout_width="50dp"
+        android:layout_width="70dp"
         android:layout_height="30dp"
         android:text="@string/_0"
         android:textAlignment="textStart"
@@ -403,14 +403,14 @@
 
     <TextView
         android:id="@+id/num_price"
-        android:layout_width="200dp"
+        android:layout_width="300dp"
         android:layout_height="50dp"
         android:text="@string/_0"
         android:textAlignment="textStart"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.61"
+        app:layout_constraintHorizontal_bias="0.371"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.185" />
@@ -424,7 +424,7 @@
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/num_price"
-        app:layout_constraintHorizontal_bias="0.89"
+        app:layout_constraintHorizontal_bias="0.091"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.185" />
