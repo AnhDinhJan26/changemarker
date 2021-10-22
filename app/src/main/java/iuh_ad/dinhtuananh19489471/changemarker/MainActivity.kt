@@ -8,12 +8,12 @@ import androidx.appcompat.app.AppCompatActivity
 
 
 class MainActivity : AppCompatActivity() {
-    // function
-    fun converter(total: Float, numTwenty_dollar: TextView, numTen_dollar: TextView, numFive_dollar: TextView,
+
+    fun converter(total: Double, numTwenty_dollar: TextView, numTen_dollar: TextView, numFive_dollar: TextView,
                   numOne_dollar: TextView, numTwentyFive_cent: TextView, numTen_cent: TextView, numFive_cent: TextView,
                   numOne_cent: TextView){
         var dollar = (total / 100).toInt()
-        var cent: Float = total / 100 - dollar
+        var cent: Double = total / 100 - dollar
         // dollar
         // 20 dollar
         numTwenty_dollar.setText((dollar / 20).toInt().toString())
@@ -30,13 +30,13 @@ class MainActivity : AppCompatActivity() {
         // cent
         // 25 cent
         numTwentyFive_cent.setText((cent / 0.25).toInt().toString())
-        cent = (cent - (cent / 0.25).toInt() * 0.25).toFloat()
+        cent = (cent - (cent / 0.25).toInt() * 0.25).toDouble()
         // 10 cent
         numTen_cent.setText((cent / 0.1).toInt().toString())
-        cent = (cent - (cent / 0.1).toInt() * 0.1).toFloat()
+        cent = (cent - (cent / 0.1).toInt() * 0.1).toDouble()
         // 5 cent
         numFive_cent.setText((cent / 0.05).toInt().toString())
-        cent = (cent - (cent / 0.05).toInt() * 0.05).toFloat()
+        cent = (cent - (cent / 0.05).toInt() * 0.05).toDouble()
         // 1 cent
         numOne_cent.setText((cent / 0.01 + 0.1).toInt().toString())
     }
@@ -66,17 +66,17 @@ class MainActivity : AppCompatActivity() {
         val numTen_dollar: TextView = findViewById(R.id.num_ten_dollar)
         val numTwenty_dollar: TextView = findViewById(R.id.num_twenty_dollar)
 
-        var total: Float = numPrice.text.toString().toFloat() * 100
+        var total: Double = numPrice.text.toString().toDouble() * 100
         fun change(num: Int){
-            var total: Float = numPrice.text.toString().toFloat() * 100
+            var total: Double = numPrice.text.toString().toDouble() * 100
             val toast = Toast.makeText(applicationContext, "Amount is too big!", Toast.LENGTH_SHORT)
-            if (total > 999999){
+            if (total > 99999999){
                 toast.show()
             }
             else{
                 toast.cancel()
                 total = total * 10 + num
-                numPrice.setText(String.format("%.2f", (total / 100)).toFloat().toString())
+                numPrice.setText(String.format("%.2f", (total / 100)).toDouble().toString())
                 converter(total, numTwenty_dollar, numTen_dollar, numFive_dollar, numOne_dollar, numTwentyFive_cent, numTen_cent, numFive_cent, numOne_cent)
             }
         }
@@ -111,7 +111,7 @@ class MainActivity : AppCompatActivity() {
             change(9)
         }
         clearBtn.setOnClickListener(){
-            total = 0f
+            total = 0.toDouble()
             numPrice.setText((total / 100).toString())
             converter(total, numTwenty_dollar, numTen_dollar, numFive_dollar, numOne_dollar, numTwentyFive_cent, numTen_cent, numFive_cent, numOne_cent)
         }
@@ -135,7 +135,7 @@ class MainActivity : AppCompatActivity() {
 
         var numPrice: TextView = findViewById(R.id.num_price)
         numPrice.text = savedInstanceState.getString("num_price")
-        var total: Float = numPrice.text.toString().toFloat() * 100
+        var total: Double = numPrice.text.toString().toDouble() * 100
         converter(total, numTwenty_dollar, numTen_dollar, numFive_dollar, numOne_dollar, numTwentyFive_cent, numTen_cent, numFive_cent, numOne_cent)
     }
 }
