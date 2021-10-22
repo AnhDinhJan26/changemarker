@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 
 
 class MainActivity : AppCompatActivity() {
-
     fun converter(total: Double, numTwenty_dollar: TextView, numTen_dollar: TextView, numFive_dollar: TextView,
                   numOne_dollar: TextView, numTwentyFive_cent: TextView, numTen_cent: TextView, numFive_cent: TextView,
                   numOne_cent: TextView){
@@ -70,11 +69,9 @@ class MainActivity : AppCompatActivity() {
         fun change(num: Int){
             var total: Double = numPrice.text.toString().toDouble() * 100
             val toast = Toast.makeText(applicationContext, "Amount is too big!", Toast.LENGTH_SHORT)
-            if (total > 99999999){
+            if (total > 9999999){
                 toast.show()
-            }
-            else{
-                toast.cancel()
+            } else {
                 total = total * 10 + num
                 numPrice.setText(String.format("%.2f", (total / 100)).toDouble().toString())
                 converter(total, numTwenty_dollar, numTen_dollar, numFive_dollar, numOne_dollar, numTwentyFive_cent, numTen_cent, numFive_cent, numOne_cent)
