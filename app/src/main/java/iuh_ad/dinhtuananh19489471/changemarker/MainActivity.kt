@@ -2,6 +2,7 @@ package iuh_ad.dinhtuananh19489471.changemarker
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -69,6 +70,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         fun change(num: Int){
+            total = numPrice.text.toString().toFloat() * 100
             total = total * 10 + num
             numPrice.setText((total / 100).toString())
             converter()
@@ -112,7 +114,16 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-//    override fun saveState(): Bundle {
-//        return bundleOf()
-//    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        var numPrice: TextView = findViewById(R.id.num_price)
+        outState.putString("num_price", numPrice.text.toString())
+        super.onSaveInstanceState(outState)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        var numPrice: TextView = findViewById(R.id.num_price)
+        numPrice.text = savedInstanceState.getString("num_price")
+    }
 }
