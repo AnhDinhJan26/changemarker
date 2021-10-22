@@ -66,13 +66,15 @@ class MainActivity : AppCompatActivity() {
             numFive_cent.setText((cent / 0.05).toInt().toString())
             cent = (cent - (cent / 0.05).toInt() * 0.05).toFloat()
             // 1 cent
-            numOne_cent.setText(((cent / 0.01) + 0.001).toInt().toString())
+            //numOne_cent.setText(((cent / 0.01) + 0.001).toInt().toString())
+            numOne_cent.setText(String.format("%.2f", (cent / 0.01)).toFloat().toInt().toString())
         }
 
+        converter()
         fun change(num: Int){
             total = numPrice.text.toString().toFloat() * 100
             total = total * 10 + num
-            numPrice.setText((total / 100).toString())
+            numPrice.setText(String.format("%.2f", (total / 100)).toFloat().toString())
             converter()
         }
 
