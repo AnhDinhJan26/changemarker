@@ -8,40 +8,20 @@ import androidx.appcompat.app.AppCompatActivity
 
 
 class MainActivity : AppCompatActivity() {
-    fun converter(total: Double, numTwenty_dollar: TextView, numTen_dollar: TextView, numFive_dollar: TextView,
-                  numOne_dollar: TextView, numTwentyFive_cent: TextView, numTen_cent: TextView, numFive_cent: TextView,
-                  numOne_cent: TextView){
-        var dollar = (total / 100).toInt()
-        var cent: Double = total / 100 - dollar
-        // dollar
-        // 20 dollar
-        numTwenty_dollar.setText((dollar / 20).toInt().toString())
-        dollar = dollar - (dollar / 20).toInt() * 20
-        // 10 dollar
-        numTen_dollar.setText((dollar / 10).toInt().toString())
-        dollar = dollar - (dollar / 10).toInt() * 10
-        // 5 dollar
-        numFive_dollar.setText((dollar / 5).toInt().toString())
-        dollar = dollar - (dollar / 5).toInt() * 5
-        // 1 dollar
-        numOne_dollar.setText(dollar.toInt().toString())
 
-        // cent
-        // 25 cent
-        numTwentyFive_cent.setText((cent / 0.25).toInt().toString())
-        cent = (cent - (cent / 0.25).toInt() * 0.25).toDouble()
-        // 10 cent
-        numTen_cent.setText((cent / 0.1).toInt().toString())
-        cent = (cent - (cent / 0.1).toInt() * 0.1).toDouble()
-        // 5 cent
-        numFive_cent.setText((cent / 0.05).toInt().toString())
-        cent = (cent - (cent / 0.05).toInt() * 0.05).toDouble()
-        // 1 cent
-        numOne_cent.setText((cent / 0.01 + 0.1).toInt().toString())
-    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        // onCreate and onRestoreInstanceState for state total
+        var total = 0.toDouble()
+        val numPrice: TextView = findViewById(R.id.num_price)
+        if (savedInstanceState != null) {
+            super.onRestoreInstanceState(savedInstanceState)
+            numPrice.text = savedInstanceState.getString("num_price")
+        }
+        total = numPrice.text.toString().toDouble() * 100
+
         // button
         val zeroBtn: Button = findViewById(R.id.zero)
         val oneBtn: Button = findViewById(R.id.one)
@@ -55,7 +35,6 @@ class MainActivity : AppCompatActivity() {
         val nineBtn: Button = findViewById(R.id.nine)
         val clearBtn: Button = findViewById(R.id.clear)
         // textview
-        val numPrice: TextView = findViewById(R.id.num_price)
         val numOne_cent: TextView = findViewById(R.id.num_one_cent)
         val numFive_cent: TextView = findViewById(R.id.num_five_cent)
         val numTen_cent: TextView = findViewById(R.id.num_ten_cent)
@@ -65,7 +44,37 @@ class MainActivity : AppCompatActivity() {
         val numTen_dollar: TextView = findViewById(R.id.num_ten_dollar)
         val numTwenty_dollar: TextView = findViewById(R.id.num_twenty_dollar)
 
-        var total: Double = numPrice.text.toString().toDouble() * 100
+        // convert func
+        fun converter(total: Double){
+            var dollar = (total / 100).toInt()
+            var cent: Double = total / 100 - dollar
+            // dollar
+            // 20 dollar
+            numTwenty_dollar.setText((dollar / 20).toInt().toString())
+            dollar = dollar - (dollar / 20).toInt() * 20
+            // 10 dollar
+            numTen_dollar.setText((dollar / 10).toInt().toString())
+            dollar = dollar - (dollar / 10).toInt() * 10
+            // 5 dollar
+            numFive_dollar.setText((dollar / 5).toInt().toString())
+            dollar = dollar - (dollar / 5).toInt() * 5
+            // 1 dollar
+            numOne_dollar.setText(dollar.toInt().toString())
+
+            // cent
+            // 25 cent
+            numTwentyFive_cent.setText((cent / 0.25).toInt().toString())
+            cent = (cent - (cent / 0.25).toInt() * 0.25).toDouble()
+            // 10 cent
+            numTen_cent.setText((cent / 0.1).toInt().toString())
+            cent = (cent - (cent / 0.1).toInt() * 0.1).toDouble()
+            // 5 cent
+            numFive_cent.setText((cent / 0.05).toInt().toString())
+            cent = (cent - (cent / 0.05).toInt() * 0.05).toDouble()
+            // 1 cent
+            numOne_cent.setText((cent / 0.01 + 0.1).toInt().toString())
+        }
+        // change func
         fun change(num: Int){
             var total: Double = numPrice.text.toString().toDouble() * 100
             val toast = Toast.makeText(applicationContext, "Amount is too big!", Toast.LENGTH_SHORT)
@@ -74,9 +83,12 @@ class MainActivity : AppCompatActivity() {
             } else {
                 total = total * 10 + num
                 numPrice.setText(String.format("%.2f", (total / 100)).toDouble().toString())
-                converter(total, numTwenty_dollar, numTen_dollar, numFive_dollar, numOne_dollar, numTwentyFive_cent, numTen_cent, numFive_cent, numOne_cent)
+                converter(total)
             }
         }
+
+        converter(total)        // reStore textview amount
+
         zeroBtn.setOnClickListener(){
             change(0)
         }
@@ -108,31 +120,13 @@ class MainActivity : AppCompatActivity() {
             change(9)
         }
         clearBtn.setOnClickListener(){
-            total = 0.toDouble()
             numPrice.setText((total / 100).toString())
-            converter(total, numTwenty_dollar, numTen_dollar, numFive_dollar, numOne_dollar, numTwentyFive_cent, numTen_cent, numFive_cent, numOne_cent)
+            converter(total)
         }
-        converter(total, numTwenty_dollar, numTen_dollar, numFive_dollar, numOne_dollar, numTwentyFive_cent, numTen_cent, numFive_cent, numOne_cent)
     }
     override fun onSaveInstanceState(outState: Bundle) {
         var numPrice: TextView = findViewById(R.id.num_price)
         outState.putString("num_price", numPrice.text.toString())
         super.onSaveInstanceState(outState)
-    }
-    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-        super.onRestoreInstanceState(savedInstanceState)
-        val numOne_cent: TextView = findViewById(R.id.num_one_cent)
-        val numFive_cent: TextView = findViewById(R.id.num_five_cent)
-        val numTen_cent: TextView = findViewById(R.id.num_ten_cent)
-        val numTwentyFive_cent: TextView = findViewById(R.id.num_twentyFive_cent)
-        val numOne_dollar: TextView = findViewById(R.id.num_one_dollar)
-        val numFive_dollar: TextView = findViewById(R.id.num_five_dollar)
-        val numTen_dollar: TextView = findViewById(R.id.num_ten_dollar)
-        val numTwenty_dollar: TextView = findViewById(R.id.num_twenty_dollar)
-
-        var numPrice: TextView = findViewById(R.id.num_price)
-        numPrice.text = savedInstanceState.getString("num_price")
-        var total: Double = numPrice.text.toString().toDouble() * 100
-        converter(total, numTwenty_dollar, numTen_dollar, numFive_dollar, numOne_dollar, numTwentyFive_cent, numTen_cent, numFive_cent, numOne_cent)
     }
 }
