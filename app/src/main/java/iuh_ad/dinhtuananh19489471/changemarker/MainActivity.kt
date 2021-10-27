@@ -50,29 +50,29 @@ class MainActivity : AppCompatActivity() {
             var cent: Double = total / 100 - dollar
             // dollar
             // 20 dollar
-            numTwenty_dollar.setText((dollar / 20).toInt().toString())
-            dollar = dollar - (dollar / 20).toInt() * 20
+            numTwenty_dollar.text = (dollar / 20).toInt().toString()
+            dollar -= (dollar / 20).toInt() * 20
             // 10 dollar
-            numTen_dollar.setText((dollar / 10).toInt().toString())
-            dollar = dollar - (dollar / 10).toInt() * 10
+            numTen_dollar.text = (dollar / 10).toInt().toString()
+            dollar -= (dollar / 10).toInt() * 10
             // 5 dollar
-            numFive_dollar.setText((dollar / 5).toInt().toString())
-            dollar = dollar - (dollar / 5).toInt() * 5
+            numFive_dollar.text = (dollar / 5).toInt().toString()
+            dollar -= (dollar / 5).toInt() * 5
             // 1 dollar
-            numOne_dollar.setText(dollar.toInt().toString())
+            numOne_dollar.text = dollar.toInt().toString()
 
             // cent
             // 25 cent
-            numTwentyFive_cent.setText((cent / 0.25).toInt().toString())
+            numTwentyFive_cent.text = (cent / 0.25).toInt().toString()
             cent = (cent - (cent / 0.25).toInt() * 0.25).toDouble()
             // 10 cent
-            numTen_cent.setText((cent / 0.1).toInt().toString())
+            numTen_cent.text = (cent / 0.1).toInt().toString()
             cent = (cent - (cent / 0.1).toInt() * 0.1).toDouble()
             // 5 cent
-            numFive_cent.setText((cent / 0.05).toInt().toString())
+            numFive_cent.text = (cent / 0.05).toInt().toString()
             cent = (cent - (cent / 0.05).toInt() * 0.05).toDouble()
             // 1 cent
-            numOne_cent.setText((cent / 0.01 + 0.1).toInt().toString())
+            numOne_cent.text = (cent / 0.01 + 0.1).toInt().toString()
         }
         // change func
         fun change(num: Int){
@@ -120,8 +120,10 @@ class MainActivity : AppCompatActivity() {
             change(9)
         }
         clearBtn.setOnClickListener(){
-            numPrice.setText((total / 100).toString())
+            total = 0.00
+            numPrice.text = (total / 100).toString()
             converter(total)
+            Toast.makeText(applicationContext, "Clear!", Toast.LENGTH_SHORT).show()
         }
     }
     override fun onSaveInstanceState(outState: Bundle) {
