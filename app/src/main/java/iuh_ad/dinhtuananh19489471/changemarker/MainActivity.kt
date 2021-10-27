@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         }
         total = numPrice.text.toString().toDouble() * 100
 
-        // button
+        // declare button object
         val zeroBtn: Button = findViewById(R.id.zero)
         val oneBtn: Button = findViewById(R.id.one)
         val twoBtn: Button = findViewById(R.id.two)
@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         val eightBtn: Button = findViewById(R.id.eight)
         val nineBtn: Button = findViewById(R.id.nine)
         val clearBtn: Button = findViewById(R.id.clear)
-        // textview
+        // declare textview object
         val numOne_cent: TextView = findViewById(R.id.num_one_cent)
         val numFive_cent: TextView = findViewById(R.id.num_five_cent)
         val numTen_cent: TextView = findViewById(R.id.num_ten_cent)
@@ -74,12 +74,10 @@ class MainActivity : AppCompatActivity() {
             // 1 cent
             numOne_cent.text = (cent / 0.01 + 0.1).toInt().toString()
         }
-        // change func
+        // change func for button
         fun change(num: Int){
-            var total: Double = numPrice.text.toString().toDouble() * 100
-            val toast = Toast.makeText(applicationContext, "Amount is too big!", Toast.LENGTH_SHORT)
             if (total > 9999999){
-                toast.show()
+                Toast.makeText(applicationContext, "Amount is too big!", Toast.LENGTH_SHORT).show()
             } else {
                 total = total * 10 + num
                 numPrice.setText(String.format("%.2f", (total / 100)).toDouble().toString())
@@ -89,6 +87,7 @@ class MainActivity : AppCompatActivity() {
 
         converter(total)        // reStore textview amount
 
+        // button interactive
         zeroBtn.setOnClickListener(){
             change(0)
         }
@@ -127,6 +126,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
     override fun onSaveInstanceState(outState: Bundle) {
+        // sate state numPrice
         var numPrice: TextView = findViewById(R.id.num_price)
         outState.putString("num_price", numPrice.text.toString())
         super.onSaveInstanceState(outState)
