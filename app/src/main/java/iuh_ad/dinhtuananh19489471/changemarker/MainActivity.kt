@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // onCreate and onRestoreInstanceState for state total
+        /* onCreate and onRestoreInstanceState for state total */
         var total = 0.toDouble()
         val numPrice: TextView = findViewById(R.id.num_price)
         if (savedInstanceState != null) {
@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         }
         total = numPrice.text.toString().toDouble() * 100
 
-        // declare button object
+        /* declare button object */
         val zeroBtn: Button = findViewById(R.id.zero)
         val oneBtn: Button = findViewById(R.id.one)
         val twoBtn: Button = findViewById(R.id.two)
@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         val eightBtn: Button = findViewById(R.id.eight)
         val nineBtn: Button = findViewById(R.id.nine)
         val clearBtn: Button = findViewById(R.id.clear)
-        // declare textview object
+        /* declare textview object */
         val numOne_cent: TextView = findViewById(R.id.num_one_cent)
         val numFive_cent: TextView = findViewById(R.id.num_five_cent)
         val numTen_cent: TextView = findViewById(R.id.num_ten_cent)
@@ -44,10 +44,11 @@ class MainActivity : AppCompatActivity() {
         val numTen_dollar: TextView = findViewById(R.id.num_ten_dollar)
         val numTwenty_dollar: TextView = findViewById(R.id.num_twenty_dollar)
 
-        // convert func
+        /* convert func */
         fun converter(total: Double){
             var dollar = (total / 100).toInt()
             var cent: Double = total / 100 - dollar
+
             // dollar
             // 20 dollar
             numTwenty_dollar.text = (dollar / 20).toInt().toString()
@@ -74,15 +75,13 @@ class MainActivity : AppCompatActivity() {
             // 1 cent
             numOne_cent.text = (cent / 0.01 + 0.1).toInt().toString()
         }
-        // change func for button
-        fun change(num: Int){
-            if (total > 9999999){
-                Toast.makeText(applicationContext, "Amount is too big!", Toast.LENGTH_SHORT).show()
-            } else {
-                total = total * 10 + num
-                numPrice.setText(String.format("%.2f", (total / 100)).toDouble().toString())
-                converter(total)
-            }
+        /* change func for button */
+        fun change(num: Int) = if (total > 9999999){
+            Toast.makeText(applicationContext, "Amount is too big!", Toast.LENGTH_SHORT).show()
+        } else {
+            total = total * 10 + num
+            numPrice.text = String.format("%.2f", (total / 100)).toDouble().toString()
+            converter(total)
         }
 
         converter(total)        // reStore textview amount
@@ -126,7 +125,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
     override fun onSaveInstanceState(outState: Bundle) {
-        // sate state numPrice
+        /* sate state numPrice */
         var numPrice: TextView = findViewById(R.id.num_price)
         outState.putString("num_price", numPrice.text.toString())
         super.onSaveInstanceState(outState)
